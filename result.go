@@ -11,9 +11,9 @@ import (
 type gear struct {
 	Id    string `json:"id"`
 	Brand struct {
-		Id    string `json:"id,omitempty"`
-		Name  string `json:"name,omitempty"`
-		Image string `json:"image,omitempty"`
+		Id    string `json:"id"`
+		Name  string `json:"name"`
+		Image string `json:"image"`
 	} `json:"brand"`
 	Image  string `json:"image"`
 	Rarity int    `json:"rarity"`
@@ -26,6 +26,7 @@ type gearskill struct {
 		Name  string `json:"name"`
 		Image string `json:"image"`
 	} `json:"main"`
+	// Sub skills (one or more sub skills may be empty)
 	Sub []struct {
 		Id    string `json:"id,omitempty"`
 		Name  string `json:"name,omitempty"`
