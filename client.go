@@ -2,6 +2,7 @@ package iksm
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -36,6 +37,9 @@ func Client(token string) (*IksmClient, error) {
 	res, err := client.Do(req)
 	if err != nil {
 		return nil, err
+	}
+	if res.StatusCode != 200 {
+		return nil, fmt.Errorf(res.Status)
 	}
 	defer res.Body.Close()
 	return &IksmClient{client: client}, nil
@@ -96,6 +100,7 @@ func (client *IksmClient) UpdateResults(dbname string, overwrite bool) error {
 		if err != nil {
 			return err
 		}
+		fmt.Println(i)
 		if err := result.SaveToDB(dbname, overwrite); err != nil {
 			if strings.Contains(err.Error(), `UNIQUE constraint failed:`) {
 				log.Printf("Warning. Skip battle_number %d, because overwrite is false", i)

@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/yurutaso/iksm"
+	"github.com/yurutaso/iksm-go"
 	"log"
 	"os"
 )
